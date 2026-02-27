@@ -1,0 +1,16 @@
+[Unit]
+Description=Paperless gotenberg pdf api
+
+[Container]
+Pod=paperless.pod
+ContainerName=paperless-gotenberg
+AutoUpdate=registry
+Exec=gotenberg '--chromium-disable-javascript=true' '--chromium-allow-list=file:///tmp/.*'
+Image=docker.io/gotenberg/gotenberg:8.25
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+RequiredBy=paperless-server.service
