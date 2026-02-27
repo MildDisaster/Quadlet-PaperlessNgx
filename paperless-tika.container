@@ -1,0 +1,15 @@
+[Unit]
+Description=Paperless tika toolkit
+
+[Container]
+Pod=paperless.pod
+ContainerName=paperless-tika
+AutoUpdate=registry
+Image=docker.io/apache/tika:latest
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+RequiredBy=paperless-server.service
