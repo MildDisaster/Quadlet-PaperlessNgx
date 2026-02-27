@@ -1,5 +1,5 @@
 # Quadlet-PaperlessNgx
-Paperless Ngx container via quadlet
+Rootless PaperlessNgx container via quadlet
 
 This bit is redundant. 
 If you know what this is for, then you'll know how to adjust it for your purpose.
