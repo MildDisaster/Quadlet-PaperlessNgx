@@ -1,0 +1,4 @@
+[Pod]
+PodName=paperless
+Network=pasta:-i,ens20 
+PublishPort=8000:8000
