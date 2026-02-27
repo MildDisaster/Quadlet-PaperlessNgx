@@ -1,0 +1,16 @@
+[Unit]
+Description=Paperless redis broker
+
+[Container]
+Pod=paperless.pod
+ContainerName=paperless-redis
+AutoUpdate=registry
+Volume=redisdata:/data
+Image=docker.io/library/redis:8
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+RequiredBy=paperless-server.service
