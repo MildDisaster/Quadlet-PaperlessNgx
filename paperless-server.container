@@ -1,0 +1,27 @@
+[Unit]
+Description=Paperless webservice
+After=paperless-redis.service paperless-postgres.service paperless-gotenberg.service paperless-tika.service
+
+[Container]
+Pod=paperless.pod
+ContainerName=paperless-server
+AutoUpdate=registry
+Environment=PAPERLESS_ADMIN_USER=Admin PAPERLESS_ADMIN_PASSWORD=password PAPERLESS_REDIS=redis://localhost:6379 PAPERLESS_DBHOST=localhost PAPERLESS_TIKA_ENABLED=1 PAPERLESS_TIKA_GOTENBERG_ENDPOINT=http://localhost:3000 PAPERLESS_TIKA_ENDPOINT=http://localhost:9998
+
+Volume=data:/usr/src/paperless/data
+Volume=media:/usr/src/paperless/media
+Volume=./export:/usr/src/paperless/export
+Volume=./consume:/usr/src/paperless/consume
+
+#Mount=type=bind,source=/storage/docs/data,destination=/usr/src/paperless/data,relabel=private
+#Mount=type=bind,source=/storage/docs/media,destination=/usr/src/paperless/media,relabel=private
+#Mount=type=bind,source=/storage/docs/export,destination=/usr/src/paperless/export,relabel=private
+#Mount=type=bind,source=/storage/docs/consume,destination=/usr/src/paperless/consume,relabel=private
+
+Image=ghcr.io/paperless-ngx/paperless-ngx:latest
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
